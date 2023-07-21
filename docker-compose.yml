@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  #alpine:
+  #  container_name: alpine
+  #  image: alpine:latest
+  #  command: tail -f /dev/null
+
+  #docker exec -it alpine sh
+  #docker compose down 
+  #docker compose up 
+  
+
+  ubuntu:
+    container_name: ubuntu
+    build: .
+    command: tail -f /dev/null
+    volumes:
+      - ./ubuntu:/home
+
+  #docker exec -it ubuntu bash
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.33
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  #docker exec -it mysql mysql -uroot -proot
+    #CREATE DATABASE pruebas;
+    #use pruebas
+    #show databases;
